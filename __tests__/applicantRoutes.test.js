@@ -37,6 +37,19 @@ describe('Applicant API endpoints', () => {
             server.close();
         }
     }));
+    // Test to retrieve all applicants
+    it('should retrieve all applicants', () => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield (0, supertest_1.default)(server).get('/awesome/applicant');
+        expect(res.statusCode).toEqual(200);
+        expect(Array.isArray(res.body)).toBe(true);
+        expect(res.body.length).toBeGreaterThan(0);
+    }));
+    // Test to retrieve a single applicant by ID
+    it('should retrieve a single applicant by ID', () => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield (0, supertest_1.default)(server).get(`/awesome/applicant/${createdApplicantId}`);
+        expect(res.statusCode).toEqual(200);
+        expect(res.body).toHaveProperty('id', createdApplicantId);
+    }));
     // Test for PUT request (update)
     it('should update the created applicant', () => __awaiter(void 0, void 0, void 0, function* () {
         const updatedApplicant = {
