@@ -27,6 +27,21 @@ describe('Applicant API endpoints', () => {
     }
   });
 
+  // Test to retrieve all applicants
+  it('should retrieve all applicants', async () => {
+    const res = await request(server).get('/awesome/applicant');
+    expect(res.statusCode).toEqual(200);
+    expect(Array.isArray(res.body)).toBe(true);
+    expect(res.body.length).toBeGreaterThan(0);
+  });
+
+  // Test to retrieve a single applicant by ID
+  it('should retrieve a single applicant by ID', async () => {
+    const res = await request(server).get(`/awesome/applicant/${createdApplicantId}`);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty('id', createdApplicantId);
+  });
+
   // Test for PUT request (update)
   it('should update the created applicant', async () => {
     const updatedApplicant = {
