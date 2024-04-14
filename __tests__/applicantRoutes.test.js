@@ -19,7 +19,7 @@ describe('Applicant API endpoints', () => {
     let createdApplicantId;
     beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
         server = app_1.default.listen(4000);
-        // Create a user for testing
+        // Create a user for testing (tests POST)
         const res = yield (0, supertest_1.default)(server)
             .post('/awesome/applicant')
             .send({
@@ -30,7 +30,7 @@ describe('Applicant API endpoints', () => {
         createdApplicantId = res.body.id;
     }));
     afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
-        // Clean up - delete the user created for testing
+        // Clean up - delete the user created for testing (tests DELETE)
         if (createdApplicantId) {
             yield (0, supertest_1.default)(server)
                 .delete(`/awesome/applicant/${createdApplicantId}`);

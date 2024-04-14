@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import db from '../db'; // Adjust the import path to where your database configuration is located
+import db from '../db';
 
 const router = Router();
 
